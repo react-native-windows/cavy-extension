@@ -1,32 +1,23 @@
-import {hook} from 'cavy'
-
-import React from 'react';
-import {Text, NativeModules} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, NativeModules } from 'react-native';
+import { useCavy } from 'cavy'
 
 const SampleModule = NativeModules.SampleModule;
 
-class SampleModuleTestPage extends React.Component<any, any> 
-{
-  constructor(props){
-    super(props)
-    this.state = {}
-  }
+export default function SampleModuleTestPage() {
+  const [result, setResult] = useState(null)
+  const generateTestHook = useCavy();
 
-  componentDidMount() {
+  useEffect(() => {
     SampleModule.method1("call method1");
-    SampleModule.method2('call method 2', (msg) => {this.setState({message: msg})});
-  }
+    SampleModule.method2('call method 2', (result: any) => { setResult(result) });
+  })
 
-  render() {
-    if (this.state.message)
-    {
-      return <Text ref={this.props.generateTestHook('SampleModuleTestPage.Text')}>{JSON.stringify(this.state.message)}</Text>
-    } else
-    {
-      return <Text>Unknown status</Text>
-    }
-
+  if (result) {
+    return <Text ref={generateTestHook('SampleModuleTestPage.Text')}>
+      {JSON.stringify(result)}
+    </Text>
+  } else {
+    return <Text>Unknown status</Text>
   }
 }
-const TestableSampleModuleTestPage = hook(SampleModuleTestPage);
-export default TestableSampleModuleTestPage
