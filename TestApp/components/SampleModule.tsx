@@ -3,11 +3,9 @@ import {hook} from 'cavy'
 import React from 'react';
 import {Text, NativeModules} from 'react-native';
 
-const {
-    SampleModule
-} = NativeModules;
+const SampleModule = NativeModules.SampleModule;
 
-export default class SimpleModuleTestPage extends React.Component<any, any> 
+class SampleModuleTestPage extends React.Component<any, any> 
 {
   constructor(props){
     super(props)
@@ -16,13 +14,13 @@ export default class SimpleModuleTestPage extends React.Component<any, any>
 
   componentDidMount() {
     SampleModule.method1("call method1");
-    SampleModule.method1('call method 2', (msg) => {this.setState({message: msg})});
+    SampleModule.method2('call method 2', (msg) => {this.setState({message: msg})});
   }
 
   render() {
     if (this.state.message)
     {
-      return <Text ref={this.props.generateTestHook('SimpleModuleTestPage.Text')}>{this.state.message}</Text>
+      return <Text ref={this.props.generateTestHook('SampleModuleTestPage.Text')}>{JSON.stringify(this.state.message)}</Text>
     } else
     {
       return <Text>Unknown status</Text>
@@ -30,3 +28,5 @@ export default class SimpleModuleTestPage extends React.Component<any, any>
 
   }
 }
+const TestableSampleModuleTestPage = hook(SampleModuleTestPage);
+export default TestableSampleModuleTestPage

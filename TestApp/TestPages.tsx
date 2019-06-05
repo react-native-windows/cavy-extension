@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Text, View,FlatList, TouchableOpacity} from 'react-native'
 import { JSXElement } from '@babel/types';
 import ExaExampleTestPage2, {ExampleTestPage1} from './containers/ExampleTestPage'
-import SimpleModulePage from './components/SampleModule'
+import SampleModulePage from './components/SampleModule'
 
 export interface ITestPage{
     key: string;
@@ -27,8 +27,8 @@ export const TestPages: Array<ITestPage> =  [
         page: require('./containers/ExampleTestPage')
     },
     {
-        key: 'SimpleModule',
-        page: SimpleModulePage
+        key: 'SampleModule',
+        page: SampleModulePage
     }
 ];
 

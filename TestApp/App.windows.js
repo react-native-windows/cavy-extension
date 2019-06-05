@@ -12,6 +12,7 @@ import {
 
 import TestApp from './TestApp';
 import ExampleSpec from '../specs/ExampleSpec';
+import SampleModuleSpec from '../specs/SampleModuleSpec'
 import {TestHookStore, Tester} from 'cavy' 
 
 const testHookStore = new TestHookStore();
@@ -19,7 +20,7 @@ const testHookStore = new TestHookStore();
 export default class AppWrapper extends React.Component {
     render() {
       return (
-        <Tester specs={[ExampleSpec, ExampleSpec]} store={testHookStore}>
+        <Tester specs={[ExampleSpec, SampleModuleSpec]} store={testHookStore}>
           <TestApp />
         </Tester>
       );
