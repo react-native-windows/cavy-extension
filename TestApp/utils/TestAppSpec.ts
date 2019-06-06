@@ -1,5 +1,6 @@
 import {TestScope} from 'cavy'
 import toSpec, { ISpec } from './toSpec';
+import { REF_BACK_BUTTON, REF_SEARCH_BUTTON } from '../Consts';
 
 export class TestAppTestScope{
     testScope: TestScope;
@@ -8,10 +9,11 @@ export class TestAppTestScope{
         this.testScope = spec;
     }
 
-    async gotoTestPage(testPage: string){
+    async navigateToTetsPage(testPage: string){
+        await this.testScope.fillIn(REF_SEARCH_BUTTON, testPage)
         await this.testScope.exists(testPage);
         await this.testScope.press(testPage);
-        await this.testScope.exists('CavyTest.Back');
+        await this.testScope.exists(REF_BACK_BUTTON);
     }
 }
 

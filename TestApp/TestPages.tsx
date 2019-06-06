@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import {Text, View,FlatList, TouchableOpacity} from 'react-native'
-import { JSXElement } from '@babel/types';
-import ExaExampleTestPage2, {ExampleTestPage1} from './containers/ExampleTestPage'
-import SampleModulePage from './components/SampleModule'
+import ExaExampleTestPage2, { ExampleTestPage1 } from './containers/ExampleTestPage'
+import { SampleModuleTestPage } from './components/SampleModule'
+import { ITestPage } from './SimpleTestApp'
 
-export interface ITestPage{
-    key: string;
-    title?: string;
-    page: Function | Component | any;
-}
-
-export const TestPages: Array<ITestPage> =  [
+export const TestPages: Array<ITestPage> = [
     {
         key: 'Example1',
         title: 'TestExample by import {ExampleTestPage1}',
@@ -28,12 +20,11 @@ export const TestPages: Array<ITestPage> =  [
     },
     {
         key: 'SampleModule',
-        page: SampleModulePage
-    }
+        page: SampleModuleTestPage
+    },
+    {
+        key: 'Example4',
+        title: 'TestExample using require',
+        page: require('./containers/ExampleTestPage')
+    },
 ];
-
-export const TestModules: { [key: string]: ITestPage } = {};
-
-TestPages.forEach((TestPage: ITestPage) => {
-    TestModules[TestPage.key] = TestPage;
-});

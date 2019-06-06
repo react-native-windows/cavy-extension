@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import { TestModules, TestPages, ITestPage } from './TestPages'
-import { hook, useCavy } from 'cavy'
-import { Exception } from 'handlebars';
-
-interface ITestAppState {
-    testPage?: string;
-};
+import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native'
+import { useCavy } from 'cavy'
+import { REF_BACK_BUTTON, REF_SEARCH_BUTTON, SEARCH_BUTTON_PLACEHOLDER, TESTAPP_TITLE, BACK_BUTTON_TEXT } from './Consts';
 
 const styles = StyleSheet.create({
     headerContainer: {
@@ -42,14 +37,14 @@ interface HeaderProps {
 
 function Header(props: HeaderProps) {
     const generateTestHook = useCavy();
+    let backButton = <View />
 
-    let backButton = (<View />);
     if (props.onBack) {
-        backButton = (<View style={styles.headerLeft}>
-            <Button title="Back" onPress={props.onBack} ref={generateTestHook('CavyTest.Back')} />
-        </View>)
+        backButton = (
+            <View style={styles.headerLeft}>
+                <Button title={BACK_BUTTON_TEXT} onPress={props.onBack} ref={generateTestHook(REF_BACK_BUTTON)} />
+            </View>)
     }
-
     return (
         <View style={styles.headerContainer}>
             <View style={styles.header}>
@@ -59,77 +54,78 @@ function Header(props: HeaderProps) {
                 {backButton}
             </View>
         </View>);
-
 };
 
-interface TestPageListProps {
-    onNavigate: Function,
-    list: Array<ITestPage>,
+export interface SimpleTestAppProps {
+    testPages: ITestPage[]
 }
 
-class TestPageList extends React.Component<TestPageListProps> {
-    _onPress(item: ITestPage): void {
-        this.props.onNavigate(item.key);
-    }
+export interface ITestPage {
+    key: string;
+    title?: string;
+    page: any;
+}
 
-    _renderItem = ({ item }) => (
-        <TouchableOpacity onPress={() => { this._onPress(item) }} ref={this.props.generateTestHook(item.key)}>
+interface SimpleTestPageListProps {
+    testPages: ITestPage[],
+    onNavigateTo: (page: string) => any
+}
+
+function SimpleTestPageList(props: SimpleTestPageListProps) {
+    const generateTestHook = useCavy();
+    const [filter, setFilter] = useState("");
+
+    const data = props.testPages.filter((item) => !filter || (item.key && item.key.includes(filter)) || (item.title && item.title.includes(filter)))
+    const _renderItem = ({ item }) => (
+        <TouchableOpacity onPress={() => { props.onNavigateTo(item.key) }} ref={generateTestHook(item.key)}>
             <View>
                 <Text>{item.title || item.key}</Text>
             </View>
         </TouchableOpacity>
     );
 
-    public render(): JSX.Element {
-        return <FlatList<ITestPage> data={this.props.list} renderItem={this._renderItem} />
-    }
+    return (
+        <View>
+            <TextInput placeholder={SEARCH_BUTTON_PLACEHOLDER} onChangeText={(text) => setFilter(text)} value={filter} ref={generateTestHook(REF_SEARCH_BUTTON)} />
+            <FlatList<ITestPage> data={data} renderItem={_renderItem} />
+        </View>)
 }
 
-const TestableTestPageList = hook<any>(TestPageList)
-
-export interface SimpleTestAppProps{
-    testPages: ITestPage[]
+interface SimpleTestPageDetailProps {
+    testPage: ITestPage
 }
 
-function SimpleTestApp(props: SimpleTestAppProps){
+function SimpleTestPageDetail(props: SimpleTestPageDetailProps) {
+    const testPage = props.testPage
+
+    if (typeof (testPage.page) === 'object' && testPage.page.default)
+        return <testPage.page.default />
+    else
+        return <testPage.page />
+}
+
+export default function SimpleTestApp(props: SimpleTestAppProps) {
     const [testPageKey, setTestPageKey] = useState(null);
 
-    
-}
+    let testModules: { [key: string]: ITestPage } = {};
 
-class TestApp extends React.Component<{}, ITestAppState> {
-    private _handleBack = () => {
-        this._navigateTo(null);
-    };
+    props.testPages.forEach((testPage: ITestPage) => {
+        testModules[testPage.key] = testPage;
+    });
 
-    private _navigateTo = (page?: string) => {
-        this.setState({ testPage: page });
-    };
+    if (testPageKey && testModules[testPageKey]) {
+        const page = testModules[testPageKey];
 
-    public render(): JSX.Element {
-        if (this.state && this.state.testPage) {
-            const testPage = TestModules[this.state.testPage];
-            const title = testPage.title || testPage.key;
-            let Testpage: any;
-            if (typeof (testPage.page) === 'object' && testPage.page.default)
-                Testpage = testPage.page.default;
-            else
-                Testpage = testPage.page;
-
-            return (
-                <View style={styles.testPageContainer}>
-                    <Header onBack={this._handleBack} title={title} />
-                    <Testpage />
-                </View>
-            );
-        }
         return (
             <View style={styles.testPageContainer}>
-                <Header title="CavyTestApp" />
-                <TestableTestPageList onNavigate={this._navigateTo} list={TestPages} />
-            </View>
-        );
+                <Header onBack={() => { setTestPageKey(null) }} title={page.title || page.key} />
+                <SimpleTestPageDetail testPage={page} />
+            </View>)
+    } else {
+        return (
+            <View style={styles.testPageContainer}>
+                <Header title={TESTAPP_TITLE} />
+                <SimpleTestPageList onNavigateTo={(key: string) => { setTestPageKey(key) }} testPages={props.testPages} />
+            </View>);
     }
 }
-
-export default TestApp;

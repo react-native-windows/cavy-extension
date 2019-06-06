@@ -7,7 +7,7 @@ export default function (spec: TestScope) {
   spec.describe('Sample Module', function () {
 
     spec.it('SampleModule', async function () {
-      await spec2.gotoTestPage('SampleModule');
+      await spec2.navigateToTetsPage('SampleModule');
       await spec.pause(1000);
       await spec.exists('SampleModuleTestPage.Text');
       await spec.pause(1000);

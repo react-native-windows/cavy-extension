@@ -1,0 +1,5 @@
+export const REF_BACK_BUTTON = 'CavyTestApp.Back'
+export const REF_SEARCH_BUTTON = 'CavyTestApp.Search'
+export const SEARCH_BUTTON_PLACEHOLDER = 'Search test cases'
+export const TESTAPP_TITLE = 'CavyTestApp'
+export const BACK_BUTTON_TEXT = 'Back'

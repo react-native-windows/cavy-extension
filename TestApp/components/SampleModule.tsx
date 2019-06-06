@@ -4,13 +4,15 @@ import { useCavy } from 'cavy'
 
 const SampleModule = NativeModules.SampleModule;
 
-export default function SampleModuleTestPage() {
+export function SampleModuleTestPage() {
   const [result, setResult] = useState(null)
   const generateTestHook = useCavy();
 
   useEffect(() => {
-    SampleModule.method1("call method1");
-    SampleModule.method2('call method 2', (result: any) => { setResult(result) });
+    if (!result) {
+      SampleModule.method1("call method1");
+      SampleModule.method2('call method 2', (result: any) => { setResult(result) });
+    }
   })
 
   if (result) {

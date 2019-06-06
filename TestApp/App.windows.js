@@ -14,14 +14,15 @@ import TestApp from './SimpleTestApp';
 import ExampleSpec from '../specs/ExampleSpec';
 import SampleModuleSpec from '../specs/SampleModuleSpec'
 import {TestHookStore, Tester} from 'cavy' 
+import {TestPages} from './TestPages'
 
 const testHookStore = new TestHookStore();
 
 export default class AppWrapper extends React.Component {
     render() {
       return (
-        <Tester specs={[ExampleSpec, SampleModuleSpec]} store={testHookStore}>
-          <TestApp />
+        <Tester specs={[SampleModuleSpec, ExampleSpec]} store={testHookStore}>
+          <TestApp  testPages={TestPages}/>
         </Tester>
       );
     }
