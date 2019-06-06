@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 
-import TestApp from './TestApp';
+import TestApp from './SimpleTestApp';
 import ExampleSpec from '../specs/ExampleSpec';
 import SampleModuleSpec from '../specs/SampleModuleSpec'
 import {TestHookStore, Tester} from 'cavy' 
