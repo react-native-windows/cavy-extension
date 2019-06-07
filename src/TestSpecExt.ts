@@ -1,6 +1,5 @@
 import { TestScope } from 'cavy'
 
-
 export interface ISpec
 {
     (spec: TestScope): void

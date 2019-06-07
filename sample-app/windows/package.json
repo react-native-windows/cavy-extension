@@ -1,0 +1,34 @@
+{
+  "name": "Demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native-windows/Scripts/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.8.3",
+    "react-native": "https://github.com/Microsoft/react-native/archive/v0.59.0-microsoft-fb59merge.14.tar.gz",
+    "react-native-windows": "^0.58.0-vnext-fb59merge.98",
+    "rnpm-plugin-windows": "^0.2.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "@types/cavy": "^2.0.0",
+    "@types/es6-collections": "^0.5.29",
+    "@types/es6-promise": "0.0.32",
+    "@types/react": "16.7.20",
+    "@types/react-native": "~0.57.29",
+    "babel-jest": "^24.8.0",
+    "cavy": "^2.1.0",
+    "cavy-extension": "0.0.1",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.3",
+    "typescript": "3.3.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

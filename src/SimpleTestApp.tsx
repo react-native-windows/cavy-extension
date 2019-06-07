@@ -106,7 +106,7 @@ function SimpleTestPageDetail(props: SimpleTestPageDetailProps) {
         return <testPage.page />
 }
 
-export default function SimpleTestApp(props: SimpleTestAppProps) {
+export function SimpleTestApp(props: SimpleTestAppProps) {
     const [testPageKey, setTestPageKey] = useState('');
 
     let testModules: { [key: string]: ITestPage } = {};

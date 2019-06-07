@@ -1,9 +1,3 @@
-import {SimpleTestApp} from './src/SimpleTestApp'
-const CavyExtension = {
-    SimpleTestApp,
-    TestAppTestScope,
-    toCavySpec,
-    toSpec
-}
-
-module.exports = CavyExtension;
+export {SimpleTestApp} from './src/SimpleTestApp'
+export {toCavySpec, toSpec} from './src/TestSpecExt'
+export {navigateToTestPage} from './src/TesScopeExt'
