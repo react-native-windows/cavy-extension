@@ -1,9 +1,11 @@
 {
   "name": "cavy-extension",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An extension for cavy test framework for React Native.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "prepublishOnly": "tsc -p ./ --outDir dist/",
     "test": "jest"
   },
   "repository": {
@@ -15,7 +17,7 @@
     "react native",
     "ios",
     "android",
-  	"cavy",
+    "cavy",
     "integration tests",
     "testing",
     "test",
@@ -23,7 +25,8 @@
   ],
   "peerDependencies": {
     "react-native": "~0.59.0",
-    "react": "~16.8.3"
+    "react": "~16.8.3",
+    "cavy": "~2.1.1"
   },
   "author": "Canhua Li",
   "license": "MIT",
@@ -31,17 +34,13 @@
     "url": "https://github.com/react-native-windows/cavy-extension/issues"
   },
   "homepage": "https://github.com/react-native-windows/cavy-extension#readme",
-  "dependencies": {
-    "typescript": "3.5.1",
-    "cavy":"2.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "21.2.1",
-    "@types/node": "12.0.7",
+    "typescript": "3.5.1",
     "@types/react": "16.8.3",
     "@babel/runtime": "^7.4.3",
     "@types/react-native": "~0.57.60",
-    "@types/cavy":"~2.0.0",
+    "@types/cavy": "~2.0.0",
     "babel-jest": "^21.2.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react-native": "^4.0.0",

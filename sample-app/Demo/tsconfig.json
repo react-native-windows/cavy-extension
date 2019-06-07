@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": [ "es2015" ],
+    "target": "es5",
+    "declaration": true,
+    "outDir": "artifacts",
+    "rootDir": "src",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "jsx": "react-native",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "filesGlob": [
+    "typings/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.jsx"
+  ],
+  "exclude":[
+    "node_modules",
+    "artifacts"
+  ]
+}
