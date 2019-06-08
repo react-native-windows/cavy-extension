@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+//@ts-ignore
+import React, { useEffect, useState } from 'react';
 import { Text, NativeModules } from 'react-native';
 import { useCavy } from 'cavy'
 

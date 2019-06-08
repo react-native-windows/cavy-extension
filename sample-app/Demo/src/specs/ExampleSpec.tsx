@@ -1,7 +1,7 @@
 import { TestScope } from "cavy";
-import {SpecHelper, toCavySpec} from '../TestApp/SpecHelper'
+import { SpecHelper, toCavySpec } from '../TestApp/SpecHelper'
 
-export default toCavySpec(function (spec: TestScope, spec2: SpecHelper) {
+function ExampleSpec (spec: TestScope, spec2: SpecHelper) {
   spec.describe('Example 1', function () {
 
     spec.it('Test Example 1', async function () {
@@ -34,4 +34,6 @@ export default toCavySpec(function (spec: TestScope, spec2: SpecHelper) {
     });
 
   });
-})
+}
+
+export default toCavySpec(ExampleSpec);

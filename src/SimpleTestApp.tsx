@@ -1,4 +1,5 @@
-import { useState } from 'react'
+//@ts-ignore
+import React, { useState } from 'react'
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import { useCavy } from 'cavy'
 import { REF_BACK_BUTTON, REF_SEARCH_BUTTON, SEARCH_BUTTON_PLACEHOLDER, TESTAPP_TITLE, BACK_BUTTON_TEXT } from './Consts';

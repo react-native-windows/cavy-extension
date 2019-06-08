@@ -1,5 +1,6 @@
+//@ts-ignore
+import  React, { useState } from 'react'
 import { TextInput } from 'react-native'
-import { useState } from 'react'
 import { useCavy } from 'cavy'
 
 export const ExampleTestPage1 = () => {

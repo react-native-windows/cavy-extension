@@ -2,10 +2,10 @@
   "name": "cavy-extension",
   "version": "0.0.2",
   "description": "An extension for cavy test framework for React Native.",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "prepublishOnly": "tsc -p ./ --outDir dist/",
+    "prepublishOnly": "tsc -p ./ --outDir lib/",
     "test": "jest"
   },
   "repository": {

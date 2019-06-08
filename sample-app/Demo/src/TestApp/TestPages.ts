@@ -18,10 +18,10 @@ export const TestPages: Array<ITestPage> = [
         title: 'TestExample using require',
         page: require('./containers/ExampleTestPage')
     },
-    {
-        key: 'SampleModule',
-        page: SampleModuleTestPage
-    },
+    // {
+    //     key: 'SampleModule',
+    //     page: SampleModuleTestPage
+    // },
     {
         key: 'Example4',
         title: 'TestExample using require',
