@@ -1,6 +1,6 @@
 {
   "name": "cavy-extension",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An extension for cavy test framework for React Native.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
