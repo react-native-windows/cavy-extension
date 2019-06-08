@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react-native",
+    "outDir": "lib",
+    "rootDir": "src",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports":true,
+    "module": "es2015",
+    "strict": true
+  },
+  "filesGlob": [
+    "typings/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude":[
+    "node_modules",
+    "lib"
+  ]
+}
